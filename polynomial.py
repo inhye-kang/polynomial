@@ -4,6 +4,9 @@ class X:
 
     def __repr__(self):
         return "X"
+    
+    def evaluate(self, value):
+        return value
 
 class Int:
     def __init__(self, i):
@@ -11,6 +14,9 @@ class Int:
     
     def __repr__(self):
         return str(self.i)
+    
+    def evaluate(self, value):
+        return self.i
 
 class Add:
     def __init__(self, p1, p2):
@@ -19,6 +25,9 @@ class Add:
     
     def __repr__(self):
         return repr(self.p1) + " + " + repr(self.p2)
+    
+    def evaluate(self, value):
+        return self.p1.evaluate(value) + self.p2.evaluate(value)
 
 class Mul:
     def __init__(self, p1, p2):
@@ -30,6 +39,9 @@ class Mul:
         repr_p1 = "( " + repr(self.p1) + " )" if isinstance(self.p1, (Add, Sub, Div)) else repr(self.p1)
         repr_p2 = "( " + repr(self.p2) + " )" if isinstance(self.p2, (Add, Sub, Div)) else repr(self.p2)
         return repr_p1 + " * " + repr_p2
+    
+    def evaluate(self, value):
+        return self.p1.evaluate(value) * self.p2.evaluate(value)
 
 class Sub:
     def __init__(self, p1, p2):
@@ -38,6 +50,9 @@ class Sub:
     
     def __repr__(self):
         return repr(self.p1) + " - " + repr(self.p2)
+    
+    def evaluate(self, value):
+        return self.p1.evaluate(value) - self.p2.evaluate(value)
     
 class Div:
     def __init__(self, p1, p2):
@@ -49,6 +64,9 @@ class Div:
         repr_p1 = "( " + repr(self.p1) + " )" if isinstance(self.p1, (Add, Sub, Mul)) else repr(self.p1)
         repr_p2 = "( " + repr(self.p2) + " )" if isinstance(self.p2, (Add, Sub, Mul)) else repr(self.p2)
         return repr_p1 + " / " + repr_p2
+    
+    def evaluate(self, value):
+        return self.p1.evaluate(value) / self.p2.evaluate(value)
 
 
 
